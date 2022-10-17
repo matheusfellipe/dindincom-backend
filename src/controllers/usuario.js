@@ -29,16 +29,19 @@ module.exports = {
                 resposta.status(401).json({
                     error: "Nenhum usuário com esse e-mail"
                 })
-            } else {
+            } 
+            else {
+                const senhaBanco = usuario.rows.map(i=>i['senha'])
+                
                 return bcrypt
-                .compare(senha,usuario.senha)
+                .compare(senha,senhaBanco[0])
                 .then(senhaValida=>{
                     if(!senhaValida){
                         resposta.status(401).json({
                             error: "Usuário não autorizado"
                         })
                     } else {
-                        return resposta.status(200).json()
+                        return resposta.status(200).send({message:"Usuário autorizado"})
                     }
                 })
             }
