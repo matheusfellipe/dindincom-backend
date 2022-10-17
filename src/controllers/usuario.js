@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 module.exports = {
      async registrar(requisicao,resposta) {
         const {nome,dt_nascimento,telefone,endereco,email,senha,id_perfil=1} = requisicao.body;
-        const senhaEncriptografada = bcrypt.hash(senha,10)
+        const senhaEncriptografada = bcrypt.hashSync(senha,6)
 
         await conexao.raw('INSERT INTO usuario (nome,dt_nascimento,telefone,endereco,email,senha,id_perfil) VALUES (?,?,?,?,?,?,?)',[
             nome,
@@ -12,7 +12,8 @@ module.exports = {
             telefone,
             endereco,
             email,
-            senhaEncriptografada
+            senhaEncriptografada,
+            id_perfil
         ])
 
         return resposta.json();
@@ -22,7 +23,7 @@ module.exports = {
      async login(requisicao,resposta){
         const {email,senha} = requisicao.body;
         await conexao.raw('select * from usuario where email = ?',[email])
-        .first()
+        // .first()
         .then(usuario=>{
             if(!usuario){
                 resposta.status(401).json({

@@ -23,6 +23,16 @@ module.exports = {
     },
     seeds: {
       directory: './src'
+    },
+    log: {
+      warn(message) {
+      },
+      error(message) {
+      },
+      deprecate(message) {
+      },
+      debug(message) {
+      },
     }
   },
 
