@@ -4,14 +4,16 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const port = 3333;
 const app = express();
-const routes = require('./src/routes/usuario')
+const usuarioRota = require('./src/routes/usuario')
+const cremosinhoRota = require('./src/routes/cremosinho')
 
 app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true,
 }))
-app.use(routes)
+app.use(usuarioRota)
+app.use(cremosinhoRota)
 
 
 app.listen(port,()=>{
