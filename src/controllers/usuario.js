@@ -32,7 +32,7 @@ module.exports = {
             } 
             else {
                 const senhaBanco = usuario.rows.map(i=>i['senha'])
-                
+                const [nome] = usuario.rows.map(i=>i.nome)
                 return bcrypt
                 .compare(senha,senhaBanco[0])
                 .then(senhaValida=>{
@@ -41,7 +41,7 @@ module.exports = {
                             error: "Usuário não autorizado"
                         })
                     } else {
-                        return resposta.status(200).send({message:"Usuário autorizado"})
+                        return resposta.status(200).json(nome)
                     }
                 })
             }
