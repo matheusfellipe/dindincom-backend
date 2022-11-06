@@ -6,9 +6,8 @@ module.exports = {
         const {nome,dt_nascimento,telefone,endereco,email,senha,id_perfil=1} = requisicao.body;
         const senhaEncriptografada = bcrypt.hashSync(senha,6)
 
-        await conexao.raw('INSERT INTO usuario (nome,dt_nascimento,telefone,endereco,email,senha,id_perfil) VALUES (?,?,?,?,?,?,?)',[
+        await conexao.raw('INSERT INTO usuario (nome,telefone,endereco,email,senha,id_perfil) VALUES (?,?,?,?,?,?)',[
             nome,
-            dt_nascimento,
             telefone,
             endereco,
             email,
@@ -25,9 +24,9 @@ module.exports = {
         await conexao.raw('select * from usuario where email = ?',[email])
         // .first()
         .then(usuario=>{
-            if(!usuario){
+            if(usuario.rows.length === 0){
                 resposta.status(401).json({
-                    error: "Nenhum usuário com esse e-mail"
+                    error: "Usuário não cadastrado"
                 })
             } 
             else {

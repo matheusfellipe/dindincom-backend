@@ -9,7 +9,7 @@ module.exports = {
         // const [count] = await conexao.raw('SELECT COUNT(*) cremosinho');
         // console.log(count);
         const cremosinho = await conexao.raw(`
-        SELECT * FROM cremosinho
+        SELECT * FROM cremosinho ORDER BY sabor
         `)
             
 
