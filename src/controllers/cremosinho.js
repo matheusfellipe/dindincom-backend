@@ -4,8 +4,7 @@ const conexao = require('../database/conexao');
 module.exports = {
     async index(requisicao, resposta) {
 
-        
-
+    
         // const [count] = await conexao.raw('SELECT COUNT(*) cremosinho');
         // console.log(count);
         const cremosinho = await conexao.raw(`
@@ -47,5 +46,18 @@ module.exports = {
             sabor,vlr_unitario,qtd_estoque,inativo
         ])
         return resposta.status(204).send(id);
+    },
+    async consultarUm(requisicao, resposta) {
+        try {
+            const { id } = requisicao.query;
+            const cremosinho = await conexao.raw(`
+            SELECT * FROM cremosinho WHERE id_cremosinho = ?`,[id]
+            )
+            
+            return resposta.json(cremosinho);
+        } catch (error) {
+            console.log(error)
+        }
+      
     }
 }
