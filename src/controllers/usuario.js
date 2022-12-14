@@ -25,7 +25,7 @@ module.exports = {
                 id_perfil
             ])
             console.log(res.rows)
-            return resposta.status(200).send(res.rows);
+            return resposta.status(200).send(res);
 
         } catch (error) {
             return resposta.status(400).json({ message: "Não foi possivel criar" })
@@ -56,7 +56,7 @@ module.exports = {
             ])
 
         } catch (error) {
-            return resposta.status(204).send(error);
+            return resposta.status(400).send(error);
         }
 
     },

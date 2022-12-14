@@ -55,7 +55,7 @@ module.exports = {
             ])
 
         } catch (error) {
-            return resposta.status(204).send(error);
+            return resposta.status(400).send(error);
         }
 
     },
