@@ -24,7 +24,7 @@ module.exports = {
                 rota
             ])
             console.log(res.rows)
-            return resposta.send(res.rows);
+            return resposta.status(200).send(res.rows);
 
         } catch (error) {
             return resposta.status(400).json({ message: "Não foi possivel criar" })
@@ -50,7 +50,7 @@ module.exports = {
             const { nome, cpf, telefone, placa_veiculo,rota } = requisicao.body;
 
 
-            await conexao.raw('UPDATE entregador SET sabor = ?,vlr_unitario= ?,qtd_estoque = ?, inativo = ? WHERE id_entregador = ?', [
+            await conexao.raw('UPDATE entregador SET nome = ?,cpf= ?,telefone = ?, placa_veiculo = ?,rota = ? WHERE id_entregador = ?', [
                 nome, cpf, telefone, placa_veiculo,rota, id
             ])
 
