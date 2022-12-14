@@ -4,7 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const port = 3333;
 const app = express();
-const usuarioRota = require('./src/routes/usuario');
+const usuarioRota = require('./src/routes/login');
 const cremosinhoRota = require('./src/routes/cremosinho');
 const entregadorRota = require('./src/routes/entregador');
 

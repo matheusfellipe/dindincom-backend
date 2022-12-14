@@ -13,12 +13,12 @@ module.exports = {
 
 
 
-        return resposta.json(cremosinho);
+        return resposta.json(cremosinho.rows);
     },
     async criar(requisicao, resposta) {
 
         try {
-            const { sabor, vlr_unitario, qtd_estoque, inativo = 'f' } = requisicao.body;
+            const { sabor, vlr_unitario, qtd_estoque, inativo  } = requisicao.body;
 
 
             const res = await conexao.raw(`INSERT INTO cremosinho (sabor,vlr_unitario,qtd_estoque,inativo) VALUES (?,?,?,?)`, [
