@@ -23,8 +23,8 @@ module.exports = {
                 placa_veiculo,
                 rota
             ])
-            console.log(res.rows)
-            return resposta.status(200).send(res.rows);
+         
+            return resposta.status(200).send(res);
 
         } catch (error) {
             return resposta.status(400).json({ message: "Não foi possivel criar" })

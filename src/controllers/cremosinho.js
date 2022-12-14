@@ -27,10 +27,10 @@ module.exports = {
                 qtd_estoque,
                 inativo
             ])
+           
             return resposta.status(200).send(res);
-
         } catch (error) {
-            return resposta.status(400).json({ message: "Não foi possivel criar" })
+            return resposta.status(400).send(error)
         }
 
     },
